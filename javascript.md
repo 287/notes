@@ -14,3 +14,15 @@ function getString(fn) {
 	return s;
 }
 ```
+
+#### get object type
+```javascript
+/**
+ * @description get object type
+ * @param {Object}
+ * @return {String}
+ */
+function typeOf(o) {
+	return Object.prototype.toString.call(o).match(/ (\w+)/)[1].toLowerCase();
+}
+```
