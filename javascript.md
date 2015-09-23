@@ -22,7 +22,7 @@ function getString(fn) {
  * @param {Object}
  * @return {String}
  */
-function typeOf(o) {
+function getType(o) {
 	return Object.prototype.toString.call(o).match(/ (\w+)/)[1].toLowerCase();
 }
 ```
