@@ -1,0 +1,97 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta meta="author" content="mrbrick@yinhe.org">
+<style>
+html,body{margin:0; width:100%; height:100%; overflow:hidden;}
+</style>
+<script src="CanvasAnimate.js"></script>
+<script src="CanvasDraw.js"></script>
+<canvas id="canvas"></canvas>
+<script>
+
+animate = new CanvasAnimate()
+canvasDraw = new CanvasDraw('#canvas')
+
+
+w = document.body.clientWidth;
+h = document.body.clientHeight;
+canvasDraw.dom.width = w
+canvasDraw.dom.height = h
+	
+for(var j=0; j<30; j++){
+	var magrin = 10 * (j+1)
+	for(var i=0; i<2000; i++){
+		animate.add({
+			name:'title1'
+			, type:'circle'
+			, option: {
+				r: 5
+				, fill:'#333'
+			}
+			, keyframes: {
+				0:{
+					x: magrin
+					, y: magrin
+					//, r:5
+				}
+				, 25:{
+					x: w-magrin
+					, y: magrin
+					//, r:100
+				}
+				, 50:{
+					x: w-magrin
+					, y: h-magrin
+					//, r:100
+				}
+				, 75:{
+					x: magrin
+					, y: h-magrin
+					//, r:100
+				}
+				, 100:{
+					x: magrin
+					, y: magrin
+					//, r:100
+				}
+			}
+			, animate:{
+				duration: 30
+				, count: -1
+				, delay: (i+j)*0.5
+			}
+		})
+	}
+}
+
+animate.draw(function(maps){
+	if(!maps.length) return;
+	canvasDraw.clear();
+	for(var i=0, l=maps.length; i<l; i++){
+		var item = maps[i]
+		, type = item.type
+		;
+		if(!canvasDraw[type]){
+			continue;
+		}
+		switch(type){
+			case 'circle':
+				var pos = [item.x, item.y, item.r]
+				canvasDraw[type](pos, item)
+				
+		}
+		
+	}
+})
+
+
+
+
+
+window.onload = function(){
+	
+	animate.init()
+}
+
+
+</script>
